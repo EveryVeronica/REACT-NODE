@@ -1,0 +1,46 @@
+.App-header {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  .App-header .left{
+    display: flex;
+    flex: 70%;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    background-color: #00000024;
+
+   
+  }
+  .App-header .right{
+    display: flex;
+    flex: 30% 1;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    background-color: #00000024;
+  }
+
+  .App-header input{
+    height: 20px;
+    width: 200px;
+    border: none;
+    outline: none;
+    margin: 5px 0px 5px 5px;
+
+  }
+
+  .App-header button{
+    height: 20px;
+    width: 200px;
+    border: none;
+    outline: none;
+    margin: 5px 0px 5px 5px;
+  }

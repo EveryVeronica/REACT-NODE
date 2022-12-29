@@ -1,13 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
-import Quotes from './Quotes';
+import Quotes from './components/Quotes';
+import Header from './components/Header';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-      <Quotes />
-      </header>
+
+      <Header />
+
+
+        
+ {/*      <Quotes /> */}
+    
+
     </div>
   );
 }
