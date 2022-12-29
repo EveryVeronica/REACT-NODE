@@ -1,14 +1,14 @@
 import React , { useState } from 'react'
 
-import './Header.css';
+import './LayoutHeader.css';
 
 
-function Header () {
+function LayoutHeader () {
 
 
 
     return ( 
-        <div className="App-header">
+        <div className="LayoutHeader-header">
             <div className='left'>
                 <input type="text" />
             </div>
@@ -23,5 +23,5 @@ function Header () {
     );
 }
 
-export default Header;
+export default LayoutHeader;
 

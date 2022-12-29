@@ -1,4 +1,4 @@
-.App-header {
+.LayoutHeader-header {
     width: 100%;
     height: fit-content;
     display: flex;
@@ -7,7 +7,7 @@
     flex-direction: row;
   }
 
-  .App-header .left{
+  .LayoutHeader-header .left{
     display: flex;
     flex: 70%;
     align-items: center;
@@ -18,7 +18,7 @@
 
    
   }
-  .App-header .right{
+  .LayoutHeader-header .right{
     display: flex;
     flex: 30% 1;
     align-items: center;
@@ -28,19 +28,20 @@
     background-color: #00000024;
   }
 
-  .App-header input{
+  .LayoutHeader-header input{
     height: 20px;
     width: 200px;
     border: none;
     outline: none;
-    margin: 5px 0px 5px 5px;
+    margin: 5px 5px 5px 5px;
 
   }
 
-  .App-header button{
+  .LayoutHeader-header button{
     height: 20px;
     width: 200px;
     border: none;
     outline: none;
-    margin: 5px 0px 5px 5px;
+    margin: 5px 5px 5px 0px;
+
   }
