@@ -11,17 +11,17 @@ function Verification({user}) {
        setToken(idToken);
     });
 
-    axios
-      .get(
-        "http://localhost:5000/",
-        {
-          params: {
-            id: token,
-          },
-        },
-        { crossdomain: true }
-      )
-      .then((res) => {});
+    // axios
+    //   .get(
+    //     "http://localhost:5000/",
+    //     {
+    //       params: {
+    //         id: token,
+    //       },
+    //     },
+    //     { crossdomain: true }
+    //   )
+    //   .then((res) => {});
   }
 
     return (
