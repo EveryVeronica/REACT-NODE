@@ -26,7 +26,9 @@ function App() {
     <div className="App">
      
       {user ? <LayoutHeader user={user} /> : <LayoutHeader user={null} />}
-      <Verification user={user}  />
+      <Verification user={user} />
+      
+
     
     </div>
   );
