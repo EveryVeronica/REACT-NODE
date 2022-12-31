@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import "./App.css";
-import Quotes from "./components/Quotes";
+import Verification from "./components/Verification";
 
 
 import LayoutHeader from "./components/LayoutHeader";
@@ -14,6 +14,9 @@ function App() {
   useEffect(() => {
     Firebase.auth().onAuthStateChanged((user) => {
       setUser(user);
+
+
+
     });
   }, []);
 
@@ -21,7 +24,10 @@ function App() {
 
   return (
     <div className="App">
-      {user ? <LayoutHeader user={user} /> :<LayoutHeader user={null} /> }
+     
+      {user ? <LayoutHeader user={user} /> : <LayoutHeader user={null} />}
+      <Verification user={user}  />
+    
     </div>
   );
 }
