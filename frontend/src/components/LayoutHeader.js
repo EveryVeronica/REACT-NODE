@@ -6,8 +6,10 @@ import { signInWithGoogle } from '../services/Firebase';
 
 function LayoutHeader({user}) {
 
-
+  
   if (user) {
+
+    
     return (
       <div className="LayoutHeader-header">
           <div className="left">
@@ -20,7 +22,8 @@ function LayoutHeader({user}) {
         <div className="right">
         <button onClick={() => auth.signOut()}>Sign Out</button>
         </div>
-    </div>
+      </div>
+      
   );
   } else {
 
