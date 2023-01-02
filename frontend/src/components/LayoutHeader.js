@@ -1,59 +1,25 @@
-
+import { useState, useEffect } from "react";
 
 import "./LayoutHeader.css";
 import { auth } from "../services/Firebase";
-import { signInWithGoogle } from '../services/Firebase';
+import { signInWithGoogle } from "../services/Firebase";
 
-function LayoutHeader({user}) {
-
-  
-  if (user) {
-
-    
-    return (
-      <div className="LayoutHeader-header">
-          <div className="left">
-        <img src={user.photoURL} alt="a" />
-        <button>{user.displayName}</button>
-     
-      
-          </div>
-
-        <div className="right">
-        <button onClick={() => auth.signOut()}>Sign Out</button>
-        </div>
-      </div>
-      
-  );
-  } else {
-
-
-
-    return (
-      
-      <div className="LayoutHeader-header">
-      <div className="left">
-  
-      </div>
-  
-    <div className="right">
+function LayoutHeader({ user }) {
+  const btnSignIn = (
     <button onClick={signInWithGoogle}>signInWithGoogle</button>
+  );
+  const btnSignOut = <button onClick={() => auth.signOut()}>Sign Out</button>;
+
+  return (
+    <div className="LayoutHeader-header">
+      <div className="left">
+        {user ? <img src={user.photoURL} alt="a" /> : null}
+        {user ? <button>{user.displayName}</button> : null}
+      </div>
+
+      <div className="right">{user ? btnSignOut : btnSignIn}</div>
     </div>
-  </div>
-
-
-    )
-
-
-
-
-
-
-
-  }
-
-
-
+  );
 }
 
 export default LayoutHeader;

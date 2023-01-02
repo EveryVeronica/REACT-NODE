@@ -1,5 +1,5 @@
 const quotes = require("inspirational-quotes");
-
+var crypto = require('crypto');
 const admin = require("../backend/config/fbConfig");
 
 const express = require("express");
@@ -20,36 +20,120 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
+  const count = io.engine.clientsCount;
+  const { token } = socket.handshake.auth; // receive the token from client
+
   console.log(`User Connected: ${socket.id}`);
 
-  socket.on("decode", (data) => {
-    const idToken = data;
-    admin
-      .auth()
-      .verifyIdToken(idToken)
-      .then((decodedToken) => {
-        const uid = decodedToken.uid;
-        console.log(
-          "ddddddddddddddddddddddddddddddddddddddd" + decodedToken.email
-        );
-        // ...
-      })
-      .catch((error) => {
-        // Handle error
-      });
+  socket.on("config_room", async (data) => {
+
+    let { email, uid } = await verifyIdToken(token);
+    console.log(`ISemail:${email}ISuid:${uid}`);
+  
+
+    console.log('aaaaaaaaaaaaaaaaaaaaaaaaa'+count);
+
+
+    // Encrypts output
+    let {iv,encryptedData} = encrypt(uid);
+    //room id ===> encryptedData
+    //socket.join(encryptedData);
+
+
+    socket.emit("receive_config", encryptedData);
+
   });
 
-  socket.on("join_room", (data) => {
-    console.log("ทำงาน" + data);
+  socket.on("join_room", async (data) => { 
+    console.log('เชื่อมต่อ room'+data);
     socket.join(data);
-  });
+  })
 
-  socket.on("send_message", (data) => {
-    socket.to(data.room).emit("receive_message", data);
+  socket.on("send_message", ({message, room }) => {
+
+    console.log('ข้อความ' + message);
+    console.log('ห้อง'+room);
+    
+   socket.to(room).emit("receive_message", message);
   });
 });
 
 server.listen(3001, () => {
   console.log("SERVER IS RUNNING");
 });
+//ถอดรหัส token
+const verifyIdToken = async (idToken) => {
+  let user = await admin.auth().verifyIdToken(idToken);
+  return user;
+};
+
+
+
+
+
+
+
+
+
+
+// Node.js program to demonstrate the	
+// crypto.createDecipheriv() method
+
+
+
+// Difining algorithm
+const algorithm = 'aes-256-cbc';
+
+// Defining key
+const key = "f09709e0b1610176969aef3f13ecf154"
+// Defining password
+
+
+// Defining iv
+const iv = crypto.randomBytes(16);
+
+// An encrypt function
+function encrypt(text) {
+console.log(Buffer.from(key));
+// Creating Cipheriv with its parameter
+let cipher =
+	crypto.createCipheriv(algorithm, key, iv);
+
+// Updating text
+let encrypted = cipher.update(text);
+
+// Using concatenation
+encrypted = Buffer.concat([encrypted, cipher.final()]);
+
+// Returning iv and encrypted data
+return { iv: iv.toString('hex'),
+	encryptedData: encrypted.toString('hex') };
+}
+
+
+
+
+
+
+
+
+// A decrypt function
+function decrypt(text) {
+
+let iv = Buffer.from(text.iv, 'hex');
+let encryptedText =
+	Buffer.from(text.encryptedData, 'hex');
+
+// Creating Decipher
+let decipher = crypto.createDecipheriv(
+  algorithm, Buffer.from(key), iv);
+
+// Updating encrypted text
+let decrypted = decipher.update(encryptedText);
+decrypted = Buffer.concat([decrypted, decipher.final()]);
+
+// returns data after decryption
+return decrypted.toString();
+}
+
 

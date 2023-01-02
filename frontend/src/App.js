@@ -4,9 +4,9 @@ import LayoutHeader from "./components/LayoutHeader";
 import Firebase from "./services/Firebase";
 
 
-import io from "socket.io-client";
+
 import Verification from "./components/Verification";
-const socket = io.connect("http://localhost:3001");
+
 
 function App() {
 
@@ -22,7 +22,6 @@ function App() {
     });
   }, []);
 
-  console.log(user);
 
   if (user) {
     user.getIdToken(true).then(function (idToken) {
@@ -37,7 +36,7 @@ function App() {
     <div className="App">
 
       {user ? <LayoutHeader user={user} /> : <LayoutHeader user={null} />}
-      {user ? <Verification token={token } /> : null }
+      {user ? <Verification token={token} /> : null }
            
 
     </div>

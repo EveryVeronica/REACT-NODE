@@ -1,51 +1,83 @@
 import { useState, useEffect } from "react";
 import io from "socket.io-client";
-const socket = io.connect("http://localhost:3001");
 
-function Chatbox({ token }) {
-  //Room State
+function Chatbox({ socket, route }) {
+  // //Room State
   const [room, setRoom] = useState("");
+
 
   // Messages States
   const [message, setMessage] = useState("");
   const [messageReceived, setMessageReceived] = useState("");
-  const [istoken, setIstoken] = useState("");
+
+  const btnSetRoom = (
+    <button
+      onClick={() => {
+        if (route) {
+          socket.emit("join_room", route);
+         setRoom(route)
+        }
+      }}
+    >
+      สร้าง chat
+    </button>
+  );
 
   const joinRoom = () => {
-    if (room !== "") {
-      socket.emit("join_room", room);
-    }
+    socket.emit("join_room", room);
   };
-
+  //ส่งข้อความ
   const sendMessage = () => {
     socket.emit("send_message", { message, room });
   };
 
+
+
+
   useEffect(() => {
-    socket.on("receive_message", (data) => {
-      setMessageReceived(data.message);
-    });
+    if (socket) {
+      socket.on("receive_message", (data) => {
+        setMessageReceived(data);
+      });
+     }
+
+
   }, [socket]);
+
+
+
+
+
+
+
 
   return (
     <div>
-      <input
-        placeholder="Room Number..."
-        onChange={(event) => {
-          setRoom(event.target.value);
-          //setRoom(token);
-        }}
-      />
-      <button onClick={joinRoom}> Join Room</button>
-      <input
-        placeholder="Message..."
-        onChange={(event) => {
-          setMessage(event.target.value);
-        }}
-      />
-      <button onClick={sendMessage}> Send Message</button>
-      <h1> Message:</h1>
-      {messageReceived}
+
+      {room}
+
+
+      {btnSetRoom}
+
+      <div>
+        <input
+          placeholder="Room Number..."
+          onChange={(event) => {
+            setRoom(event.target.value);
+          }}
+        />
+
+        <button onClick={joinRoom}> Join Room</button>
+        <input
+          placeholder="Message..."
+          onChange={(event) => {
+            setMessage(event.target.value);
+          }}
+        />
+        <button onClick={sendMessage}> Send Message</button>
+        <h1> Message:</h1>
+        {messageReceived}
+      </div>
     </div>
   );
 }
