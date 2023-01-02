@@ -39,7 +39,10 @@ function ManageRequest({ token }) {
 
 
           }}>ตัดการเชื่อมต่อ</button>
-             {<Chatbox socket={socket}  route={route} />}
+
+
+
+      {socket ?<Chatbox socket={socket}  route={route} /> : null}
       </div>
    
   );
