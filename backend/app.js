@@ -21,7 +21,7 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
   const count = io.engine.clientsCount;
-  const { token } = socket.handshake.auth; // receive the token from client
+  const {token} = socket.handshake.auth; // receive the token from client
 
   console.log(`User Connected: ${socket.id}`);
 
@@ -29,17 +29,10 @@ io.on("connection", (socket) => {
 
     let { email, uid } = await verifyIdToken(token);
     console.log(`ISemail:${email}ISuid:${uid}`);
-  
-
-    console.log('aaaaaaaaaaaaaaaaaaaaaaaaa'+count);
-
+    console.log('จำนวนการเชื่อมต่อ'+count);
 
     // Encrypts output
     let {iv,encryptedData} = encrypt(uid);
-    //room id ===> encryptedData
-    //socket.join(encryptedData);
-
-
     socket.emit("receive_config", encryptedData);
 
   });
@@ -50,10 +43,6 @@ io.on("connection", (socket) => {
   })
 
   socket.on("send_message", ({message, room }) => {
-
-    console.log('ข้อความ' + message);
-    console.log('ห้อง'+room);
-    
    socket.to(room).emit("receive_message", message);
   });
 });

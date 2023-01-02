@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import io from "socket.io-client";
 
-function Chatbox({ socket, route }) {
+
+
+
+function SpreadOnline({ socket, route }) {
   // //Room State
   const [room, setRoom] = useState("");
-
 
   // Messages States
   const [message, setMessage] = useState("");
@@ -15,11 +16,11 @@ function Chatbox({ socket, route }) {
       onClick={() => {
         if (route) {
           socket.emit("join_room", route);
-         setRoom(route)
+          setRoom(route);
         }
       }}
     >
-      สร้าง chat
+      สร้าง SpreadOnline
     </button>
   );
 
@@ -31,31 +32,17 @@ function Chatbox({ socket, route }) {
     socket.emit("send_message", { message, room });
   };
 
-
-
-
   useEffect(() => {
     if (socket) {
       socket.on("receive_message", (data) => {
         setMessageReceived(data);
       });
-     }
-
-
+    }
   }, [socket]);
-
-
-
-
-
-
-
 
   return (
     <div>
-
       {room}
-
 
       {btnSetRoom}
 
@@ -82,4 +69,4 @@ function Chatbox({ socket, route }) {
   );
 }
 
-export default Chatbox;
+export default SpreadOnline;

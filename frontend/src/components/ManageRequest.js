@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react";
 import io from "socket.io-client";
-import Chatbox from "../components/Chatbox";
+import SpreadOnline from "../components/SpreadOnline";
 
 function ManageRequest({ token }) {
- 
-    const [socket, setSocket] = useState("");  //ร้องขอเซิฟเวอร์ ทาง sockket
-    const [route, setRoute] = useState(""); //เส้นทางการติดต่อระบบ
-    
-
-  //useEffect(() => {}, []);
+  const [socket, setSocket] = useState(""); //ร้องขอเซิฟเวอร์ ทาง sockket
+  const [route, setRoute] = useState(""); //เส้นทางการติดต่อระบบ
 
   return (
     <div>
@@ -21,30 +17,27 @@ function ManageRequest({ token }) {
           });
 
           socket.emit("config_room", "1");
-          
-                  
+
           socket.on("receive_config", (data) => {
-              console.log(data);
-            setRoute(data)
+            console.log(data);
+            setRoute(data);
             setSocket(socket);
           });
         }}
       >
         สร้างการเชื่อมต่อ
       </button>
-          <button onClick={() => {
-              
-              setRoute(null)
-              setSocket(null);
+      <button
+        onClick={() => {
+          setRoute(null);
+          setSocket(null);
+        }}
+      >
+        ตัดการเชื่อมต่อ
+      </button>
 
-
-          }}>ตัดการเชื่อมต่อ</button>
-
-
-
-      {socket ?<Chatbox socket={socket}  route={route} /> : null}
-      </div>
-   
+      {socket ? <SpreadOnline socket={socket} route={route} /> : null}
+    </div>
   );
 }
 

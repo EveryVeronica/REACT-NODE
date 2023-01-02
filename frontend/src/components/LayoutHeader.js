@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 import "./LayoutHeader.css";
 import { auth } from "../services/Firebase";
 import { signInWithGoogle } from "../services/Firebase";
