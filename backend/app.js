@@ -43,7 +43,9 @@ io.on("connection", (socket) => {
   })
 
   socket.on("send_message", ({message, room }) => {
-   socket.to(room).emit("receive_message", message);
+    socket.to(room).emit("receive_message", message);
+   socket.emit("receive_message", message);
+    
   });
 });
 

@@ -1,0 +1,144 @@
+.container-fluid {
+    height: 100%;
+    background-color: red;
+    padding: 20px;
+}
+
+.container{
+    width: 100%;
+    height: fit-content;
+   
+}
+
+
+[class*="row-"] {
+    width: 100%;
+}
+
+[class*="btn-"] {
+   margin: 0px 5px 0px 0px;
+   border: none;
+}
+
+[class*="input-"] {
+    margin: 0px 5px 0px 0px;
+    outline: none;
+    border: none;
+    padding: 0;
+ }
+
+.row{
+    width: 100%;
+}
+
+.column{
+    width: fit-content;
+}
+
+.cell{
+    padding: 2px;
+    margin: 5px;
+    background-color: aqua;
+}
+
+.row-frame{
+    display: flex;
+    align-items: center;
+}
+
+
+.row-frame .input--{
+    width: 80%;
+    height: 40px;
+     background-color: brown;
+}
+
+
+.row-frame >.btn--a{
+    height: 40px;
+    width: 15%;
+}
+
+.row-frame >.btn--b{
+    height: 40px;
+    width: 5%;
+   
+}
+
+
+.row--spread-a{
+background-color: aqua;
+}
+.row--spread-b{
+background-color: beige;
+}
+.row--spread-c{
+background-color: blueviolet;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-gap: 2px;
+  background-color: #2196F3;
+  padding: 2px;
+
+  min-width: fit-content;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+
+
+}
+
+.item2 {
+  grid-column: 2 / 5;
+}
+
+
+
+.row--spread-a > .grid-container {
+    grid-template-columns: 100px auto auto auto;
+    grid-template-rows: 40px;
+    margin: 20px 0px 20px 0px;
+}
+.row--spread-b > .grid-container {
+    grid-template-columns: 100px auto auto auto;
+    grid-template-rows: 30px;
+    background-color: aqua;
+    margin-bottom: 5px;
+}
+.row--spread-c > .grid-container {
+    grid-template-columns: 100px auto auto auto;
+    /* grid-template-rows: 500px; */
+    min-height: 500px;
+}
+
+.input--spread-insert{
+    height: 40px;
+}
+
+.grid-container  li{
+    list-style-type: none;
+    margin: 2px 0px 2px 0px;
+    padding: 0;
+    background-color: cadetblue;
+    display: flex;
+}
+
+.grid-container  li .input-{
+    background-color: #ffc107d4;
+    height: 25px;
+
+}
+
+
+ul{
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+

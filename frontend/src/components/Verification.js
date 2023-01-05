@@ -13,6 +13,8 @@ function Verification({ token }) {
   return (
     <div>
 
+      
+
       {/*  แสดงหน้า Chatbox */}
       {token ? <ManageRequest token={token}/> : null}
     </div>
