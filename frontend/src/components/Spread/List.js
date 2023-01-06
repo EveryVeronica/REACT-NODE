@@ -6,19 +6,14 @@ const List = (props) => {
   const [Lists, setList] = useState([]);
 
   useEffect(() => {
-
     if (props.text.uid !== undefined) {
       setList([...Lists, props.text]);
-   
 
       if (Lists.length >= props.round) {
-      
-        props.text.fn(Lists)
+        props.text.fn(Lists);
         setList([]);
+      }
     }
-      
-    }
-
   }, [props.text]);
 
   return (

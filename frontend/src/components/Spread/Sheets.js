@@ -19,7 +19,7 @@ const Sheets = () => {
   const [render, setRender] = useState([]);
   const [specs, setSpecs] = useState([]);
 
-  const [quota, setQuota] = useState(5);//จำนวน felds
+  const [quota, setQuota] = useState(5); //จำนวน felds
 
   const inputRef = useRef(null);
 
@@ -28,53 +28,43 @@ const Sheets = () => {
     let obj = {
       uid: uuidv4(),
       str: text,
-      fn:setRow
-    }
+      fn: setRow,
+    };
     setInput(obj);
- 
-    
+
     inputRef.current.value = "";
   };
 
-  const handleClear = () => { };
-  const setRow = (e) => { 
-    alert('ทดสอบ.......' + e)
-    setSpecs([...specs,e])
+  const handleClear = () => {};
+  const setRow = (e) => {
+    alert("ทดสอบ......." + e);
+    setSpecs([...specs, e]);
   };
 
-
-
   useEffect(() => {
- 
-    
-    const rows = [];
+    let rows = [];
     for (let i = 0; i < specs.length; i++) {
 
-                 
+      rows.push(<ul>
+      
+        {specs[i].map((item) => (
+          <Item key={item.uid} item={item} />
+        ))}
+      </ul>);
+    }
 
-
-
-     
-   let el = <ul> {specs[i].map((item) => (<Item key={item.uid} item={item} />))} </ul>  
-   rows.push(el)
-   }
-
-   setRender(rows)
-
- }, [specs]);
+    setRender(rows);
+  }, [specs]);
 
   return (
     <div className="container-fluid">
       <div className="container">
         <div class="row-frame">
-
-
-{quota}
+          {quota}
 
           <input
             onChange={(event) => {
-              setQuota(event.target.value)
-
+              setQuota(event.target.value);
             }}
             id="input"
             className="input--"
@@ -113,11 +103,7 @@ const Sheets = () => {
         <div class="row--spread-c">
           <div class="grid-container">
             <div class="item1">1</div>
-            <div class="item2">
-
-{render}
-             
-            </div>
+            <div class="item2">{render}</div>
           </div>
         </div>
       </div>
