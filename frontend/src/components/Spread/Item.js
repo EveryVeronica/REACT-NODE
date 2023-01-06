@@ -9,9 +9,14 @@ const Item = (props) => {
 return (
 
     <li>
-       <button type="button" className="btn-" onClick={props.onhandle}>
+       
+        
 
-      </button> 
+    {props.onhandle ?  <button type="button" className="btn-" onClick={() => {
+            props.onhandle(props.item.uid)
+       }}>
+
+        </button>  : null} 
           <input className="input-" type="text" value={props.item.str} />
 
     </li>

@@ -37,7 +37,7 @@ const Sheets = () => {
 
   const handleClear = () => {};
   const setRow = (e) => {
-    alert("ทดสอบ......." + e);
+   // alert("ทดสอบ......." + e);
     setSpecs([...specs, e]);
   };
 
@@ -57,17 +57,27 @@ const Sheets = () => {
         {specs[i].map((item) => (
           <Item key={item.uid} item={item} onhandle={(e) => {
             
+            let newRow = [];
+            let is = specs[i].filter((it) => it.uid !== e)
+            for (let ii = 0; ii < specs.length; ii++) { 
+              
+              
+              if (i == ii) {
+                newRow.push(is)
+              
+              } else {
+                newRow.push(specs[ii])
+
+              }
+
+            }
+
+            //alert('ข้อมูล' + specs[i].filter((it) => it.uid !== e))
+
+            setSpecs(newRow)
 
 
 
-
-
-
-
-
-
-
-            alert('แสดงผล'+e.target.Item+'จำนวน'+i)
            }} />
         ))}
 
