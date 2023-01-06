@@ -41,6 +41,13 @@ const Sheets = () => {
     setSpecs([...specs, e]);
   };
 
+
+  // const handleDelete =(e) => {
+            
+
+  //   alert('แสดงผล'+e)
+  //  }
+
   useEffect(() => {
     let rows = [];
     for (let i = 0; i < specs.length; i++) {
@@ -48,7 +55,20 @@ const Sheets = () => {
       rows.push(<ul key={i}>
       
         {specs[i].map((item) => (
-          <Item key={item.uid} item={item} />
+          <Item key={item.uid} item={item} onhandle={(e) => {
+            
+
+
+
+
+
+
+
+
+
+
+            alert('แสดงผล'+e.target.Item+'จำนวน'+i)
+           }} />
         ))}
 
         <button onClick={() => {

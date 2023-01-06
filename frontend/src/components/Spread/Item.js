@@ -9,7 +9,7 @@ const Item = (props) => {
 return (
 
     <li>
-       <button type="button" className="btn-" >
+       <button type="button" className="btn-" onClick={props.onhandle}>
 
       </button> 
           <input className="input-" type="text" value={props.item.str} />
