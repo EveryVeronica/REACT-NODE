@@ -50,6 +50,13 @@ const Sheets = () => {
         {specs[i].map((item) => (
           <Item key={item.uid} item={item} />
         ))}
+
+        <button onClick={() => {
+          
+          setSpecs(specs.filter((item,key) => key !== i));
+
+
+        }}>ลบ{i}</button>
       </ul>);
     }
 
