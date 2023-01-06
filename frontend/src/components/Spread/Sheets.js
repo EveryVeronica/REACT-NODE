@@ -45,7 +45,7 @@ const Sheets = () => {
     let rows = [];
     for (let i = 0; i < specs.length; i++) {
 
-      rows.push(<ul>
+      rows.push(<ul key={i}>
       
         {specs[i].map((item) => (
           <Item key={item.uid} item={item} />
