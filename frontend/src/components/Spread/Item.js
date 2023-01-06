@@ -1,15 +1,22 @@
+import { useState,useEffect } from "react";
 
-const Item = ({item}) => (
+const Item = (props) => {
     
 
 
-    <li>
-      {/* <button type="button" className="btn-" onClick={() => item.fn.remove()}>
 
-      </button> */}
-          <input className="input-" type="text" value={item.text} />
+
+return (
+
+    <li>
+       <button type="button" className="btn-" >
+
+      </button> 
+          <input className="input-" type="text" value={props.item.str} />
 
     </li>
-);
+)
+
+} 
 
 export default Item;

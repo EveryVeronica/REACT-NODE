@@ -1,86 +1,94 @@
-import { useState, useEffect, useRef,useCallback  } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import List from "./List";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import Item from "./Item";
 const initialArtists = [
-  {uid:1,text: 'Marta Colvin Andrade' },
-  {uid:2,text: 'Lamidi Olonade Fakeye'},
-  {uid:3,text: 'Louise Nevelson' },
-  {uid:4,text: 'Marta Colvin Andrade' },
-  {uid:5,text: 'Lamidi Olonade Fakeye'},
-  {uid:6,text: 'Louise Nevelson'},
+  { uid: 1, text: "Marta Colvin Andrade" },
+  { uid: 2, text: "Lamidi Olonade Fakeye" },
+  { uid: 3, text: "Louise Nevelson" },
+  { uid: 4, text: "Marta Colvin Andrade" },
+  { uid: 5, text: "Lamidi Olonade Fakeye" },
+  { uid: 6, text: "Louise Nevelson" },
 ];
 
 const Sheets = () => {
+  const [input, setInput] = useState({
+    uid: undefined,
+    text: "start",
+  });
+  const [render, setRender] = useState([]);
+  const [specs, setSpecs] = useState([]);
 
-  const [lists, setList] = useState([]);
-  const [rows, setRow] = useState([]);
-
-
-  const [quota, setQuota] = useState([])
-
-
-  
+  const [quota, setQuota] = useState(5);//จำนวน felds
 
   const inputRef = useRef(null);
 
   const inputText = () => {
-    let text = inputRef.current.value
-
-    let num = rows.length
-    setList([...lists,{
+    let text = inputRef.current.value;
+    let obj = {
       uid: uuidv4(),
-      number:num,
-      text:text
-    }])
-
-
-    if (lists.length >= 5) {
-
-      let listEl = <List list={lists} number={num} />
-
-     setRow([...rows,listEl])
-
-    setList([])
-    } else {
- 
- 
-      
+      str: text,
+      fn:setRow
     }
+    setInput(obj);
+ 
+    
+    inputRef.current.value = "";
+  };
 
-    inputRef.current.value = ""
-  }
-
+  const handleClear = () => { };
+  const setRow = (e) => { 
+    alert('ทดสอบ.......' + e)
+    setSpecs([...specs,e])
+  };
 
 
 
   useEffect(() => {
+ 
+    
+    const rows = [];
+    for (let i = 0; i < specs.length; i++) {
 
-  }, [lists]);
+                 
 
-  
+
+
+     
+   let el = <ul> {specs[i].map((item) => (<Item key={item.uid} item={item} />))} </ul>  
+   rows.push(el)
+   }
+
+   setRender(rows)
+
+ }, [specs]);
+
   return (
     <div className="container-fluid">
       <div className="container">
         <div class="row-frame">
+
+
+{quota}
+
           <input
             onChange={(event) => {
-      
-                
-                         }}
+              setQuota(event.target.value)
+
+            }}
             id="input"
             className="input--"
             placeholder="numberRef"
             type="text"
           />
 
-          <input ref={inputRef}  id="input" className="input--" type="text" />
+          <input ref={inputRef} id="input" className="input--" type="text" />
 
-          <button className="btn--a" onClick={inputText} >
+          <button className="btn--a" onClick={inputText}>
             Insert!
           </button>
 
-          <button className="btn--b" >Import.Csv!</button>
+          <button className="btn--b">Import.Csv!</button>
         </div>
       </div>
       <div
@@ -98,11 +106,7 @@ const Sheets = () => {
           <div class="grid-container">
             <div class="item1"></div>
             <div class="item2" style={{ display: "flex" }}>
-
-            <List list={lists} number={lists.length}/>
-
-              
-             
+              {<List text={input} round={quota} />}
             </div>
           </div>
         </div>
@@ -111,17 +115,8 @@ const Sheets = () => {
             <div class="item1">1</div>
             <div class="item2">
 
-
-
-              
-            {rows.map((item) => (
-         
-     item
-         
-       ))}
- 
-
-
+{render}
+             
             </div>
           </div>
         </div>

@@ -1,37 +1,33 @@
 import Item from "./Item";
 import { useState, useEffect, useRef } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
+const List = (props) => {
+  const [Lists, setList] = useState([]);
 
+  useEffect(() => {
 
+    if (props.text.uid !== undefined) {
+      setList([...Lists, props.text]);
+   
 
-const List = ({list,number}) => {
-  
+      if (Lists.length >= props.round) {
+      
+        props.text.fn(Lists)
+        setList([]);
+    }
+      
+    }
 
+  }, [props.text]);
 
-
-
-
-  return(
+  return (
     <ul>
-    {list.map((item) => (
-         
-      
-      <Item  item={item}/>
-      
-    ))}
-      
-      {number ? (
-        <button>{number}</button>
-      ) : (
-        <button>{0}</button>
-      )}
-  
-    
-
+      {Lists.map((item) => (
+        <Item key={item.uid} item={item} />
+      ))}
     </ul>
-);
-} 
+  );
+};
 
-  
 export default List;
