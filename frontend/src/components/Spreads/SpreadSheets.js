@@ -123,20 +123,20 @@ function SpreadSheets() {
 
               { 
          
-          rows.map((row) => {
+            rows.map((row,index) => {
                   
               let element = []
 
-            row.forEach((item) => {
-
-
-
-              element.push(<Cell key={item.uid} item={item} />)
-            })
-                  
-             
-    return  <ul> {element} </ul> 
-                })
+              row.forEach((item) => {
+                  element.push(<Cell key={item.uid} item={item} />)
+              })
+              return <ul key={uuidv4()}> {element} <button onClick={() => {
+                     let newR = rows.filter((r,k) => (
+                         k !== index
+                    ))
+                       setRows(newR)
+              }}>ลบ</button> </ul> 
+           })
                 
               }
            
