@@ -1,10 +1,7 @@
 import React from 'react'
 
 function Heading() {
-  return (
-    <div>
-      
-    </div>
+  return (<li><input className="input-" type="text"  /></li>
   )
 }
 

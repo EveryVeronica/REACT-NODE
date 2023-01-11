@@ -7,9 +7,7 @@ function InputStr(props) {
  
 
       <input
-        onChange={(event) => {
-          //setQuota(event.target.value);
-        }}
+        onChange={props.set}
         id="input"
         className="input--"
         placeholder="numberRef"
