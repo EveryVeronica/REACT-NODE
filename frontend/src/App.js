@@ -4,7 +4,8 @@ import LayoutHeader from "./components/LayoutHeader";
 import Firebase from "./services/Firebase";
 import Verification from "./components/Verification";
 import SpreadOnline from "./components/SpreadOnline";
-import Sheets from "./components/Spread/Sheets";
+
+import SpreadSheets from "./components/Spreads/SpreadSheets";
 
 function App() {
   // const [user, setUser] = useState(null);
@@ -28,7 +29,7 @@ function App() {
       {/*     {user ? <Verification token={token} /> : null} */}
       {/*   <SpreadOnline  /> */}
       
-      {<Sheets/>}
+      {<SpreadSheets/>}
     </div>
   );
 }

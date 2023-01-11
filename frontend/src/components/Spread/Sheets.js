@@ -26,68 +26,54 @@ const Sheets = () => {
   const inputText = () => {
     let text = inputRef.current.value;
     let obj = {
+      //เก็บ ค่า input
       uid: uuidv4(),
       str: text,
-      fn: setRow,
+      fn: (e) => {
+        setSpecs([...specs, e]);
+      }, //ส่ง ฟังชั่นเข้าไปทำงาน ดึง obj แถว กลับมา
     };
     setInput(obj);
 
     inputRef.current.value = "";
   };
 
-  const handleClear = () => {};
-  const setRow = (e) => {
-   // alert("ทดสอบ......." + e);
-    setSpecs([...specs, e]);
-  };
-
-
-  // const handleDelete =(e) => {
-            
-
-  //   alert('แสดงผล'+e)
-  //  }
-
   useEffect(() => {
     let rows = [];
     for (let i = 0; i < specs.length; i++) {
+      rows.push(
+        <ul key={i}>
+          {specs[i].map((item) => (
+            <Item
+              key={item.uid}
+              item={item}
+              onhandle={(e) => {
+                let newRow = []; //เก็บค่าใหม่
+                let is = specs[i].filter((it) => it.uid !== e); //filter แถว นี้
+                for (let ii = 0; ii < specs.length; ii++) {
+                  //วนเก็บค่า
 
-      rows.push(<ul key={i}>
-      
-        {specs[i].map((item) => (
-          <Item key={item.uid} item={item} onhandle={(e) => {
-            
-            let newRow = [];
-            let is = specs[i].filter((it) => it.uid !== e)
-            for (let ii = 0; ii < specs.length; ii++) { 
-              
-              
-              if (i == ii) {
-                newRow.push(is)
-              
-              } else {
-                newRow.push(specs[ii])
+                  if (i == ii) {
+                    newRow.push(is); //แทรกค่านี้ลงไป
+                  } else {
+                    newRow.push(specs[ii]); //ค่าปกติ
+                  }
+                }
 
-              }
+                setSpecs(newRow); //เซ็ทใหม่
+              }}
+            />
+          ))}
 
-            }
-
-            //alert('ข้อมูล' + specs[i].filter((it) => it.uid !== e))
-
-            setSpecs(newRow)
-
-
-
-           }} />
-        ))}
-
-        <button onClick={() => {
-          
-          setSpecs(specs.filter((item,key) => key !== i));
-
-
-        }}>ลบ{i}</button>
-      </ul>);
+          <button
+            onClick={() => {
+              setSpecs(specs.filter((item, key) => key !== i)); //ลบแถว row
+            }}
+          >
+            ลบ{i}
+          </button>
+        </ul>
+      );
     }
 
     setRender(rows);
