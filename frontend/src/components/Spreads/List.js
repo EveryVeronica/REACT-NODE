@@ -1,10 +1,29 @@
 import React from 'react'
+import Cell from './Cell'
 
-function List() {
+function List(props) {
   return (
-    <div>
-      
+    <div class="row--spread-b">
+    <div class="grid-container">
+      <div class="item1"></div>
+      <div class="item2" style={{ display: "flex" }}>
+   
+      <ul>
+{props.arr ? props.arr.map((item) => (
+  <Cell key={item.uid} item={item} />
+)) : null}
+          
+</ul>
+
+
+
+
+
+
+
+      </div>
     </div>
+  </div>
   )
 }
 

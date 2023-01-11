@@ -5,11 +5,19 @@ function Cell(props) {
  
     
     <li>
-       
-          <input className="input-" type="text" value={props.item.str} />
-      <button onClick={() => {
+         {props.fn ?  <button onClick={() => {
         props.fn(props.id,props.item.uid)
-      }}>{ props.item.uid}</button>
+      }}>-</button> : null}
+
+      
+      <input className="input-" type="text" value={props.item.str} />
+      
+
+
+   
+      
+
+
     </li>
   )
 }

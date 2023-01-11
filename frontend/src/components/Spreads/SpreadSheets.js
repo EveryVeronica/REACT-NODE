@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Cell from "./Cell";
+import InputStr from "./InputStr";
+import List from "./List";
 
 
 function SpreadSheets() {
@@ -80,29 +82,10 @@ function SpreadSheets() {
 
   return (
     <div className="container-fluid">
-      <div className="container">
-        <div class="row-frame">
-     
 
-          <input
-            onChange={(event) => {
-              //setQuota(event.target.value);
-            }}
-            id="input"
-            className="input--"
-            placeholder="numberRef"
-            type="text"
-          />
+      {<InputStr Ref={inputRef} fn={inputText} />}
 
-          <input ref={inputRef} id="input" className="input--" type="text" />
 
-          <button className="btn--a" onClick={inputText}>
-            Insert!
-          </button>
-
-          <button className="btn--b">Import.Csv!</button>
-        </div>
-      </div>
       <div
         className="container"
         style={{ whiteSpace: "nowrap", overflowX: "scroll" }}
@@ -114,27 +97,17 @@ function SpreadSheets() {
             <div class="item2" style={{ display: "flex" }}></div>
           </div>
         </div>
-        <div class="row--spread-b">
-          <div class="grid-container">
-            <div class="item1"></div>
-            <div class="item2" style={{ display: "flex" }}>
-         
-            <ul>
-      {lists ? lists.map((item) => (
-        <Cell key={item.uid} item={item} />
-      )) : null}
-                
-    </ul>
+
+        
+
+
+        {<List arr={lists} />}
 
 
 
 
 
 
-
-            </div>
-          </div>
-        </div>
         <div class="row--spread-c">
           <div class="grid-container">
             <div class="item1">1</div>
