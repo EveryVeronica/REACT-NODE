@@ -26,6 +26,15 @@ function SpreadSheets() {
       //เก็บ ค่า input
       uid: uuidv4(),
       str: inputRef.current.value,
+      fn: (i,e) => {
+        alert(`แถวที่:${i} uid:${e}`)
+        
+
+       
+
+
+
+      }
     }])
     inputRef.current.value = "";
 
@@ -128,7 +137,7 @@ function SpreadSheets() {
               let element = []
 
               row.forEach((item) => {
-                  element.push(<Cell key={item.uid} item={item} />)
+                element.push(<Cell key={item.uid} item={item} id={index} />)
               })
               return <ul key={uuidv4()}> {element} <button onClick={() => {
                      let newR = rows.filter((r,k) => (
