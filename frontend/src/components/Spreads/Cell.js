@@ -8,7 +8,7 @@ function Cell(props) {
        
           <input className="input-" type="text" value={props.item.str} />
       <button onClick={() => {
-        props.item.fn(props.id,props.item.uid)
+        props.fn(props.id,props.item.uid)
       }}>{ props.item.uid}</button>
     </li>
   )

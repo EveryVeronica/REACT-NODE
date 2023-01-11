@@ -25,16 +25,7 @@ function SpreadSheets() {
     setLists([...lists,{
       //เก็บ ค่า input
       uid: uuidv4(),
-      str: inputRef.current.value,
-      fn: (i,e) => {
-        alert(`แถวที่:${i} uid:${e}`)
-        
-
-       
-
-
-
-      }
+      str: inputRef.current.value
     }])
     inputRef.current.value = "";
 
@@ -45,7 +36,28 @@ function SpreadSheets() {
 
 
 
+  const remove = (i,e) => {
 
+    let element = []
+    rows.map((row,index) => {
+                  
+      if (index == i) {
+        element.push(
+
+        row.filter((item) => (
+          item.uid !== e
+        ))
+          
+        )
+        
+      } else { 
+        element.push(row)
+      }
+               
+    })
+    
+    setRows(element)
+}
 
 
 
@@ -137,7 +149,16 @@ function SpreadSheets() {
               let element = []
 
               row.forEach((item) => {
-                element.push(<Cell key={item.uid} item={item} id={index} />)
+
+
+
+
+
+
+
+
+
+                element.push(<Cell key={item.uid} item={item} id={index} fn={remove} />)
               })
               return <ul key={uuidv4()}> {element} <button onClick={() => {
                      let newR = rows.filter((r,k) => (
