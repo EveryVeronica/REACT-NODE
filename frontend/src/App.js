@@ -8,26 +8,26 @@ import SpreadOnline from "./components/SpreadOnline";
 import SpreadSheets from "./components/Spreads/SpreadSheets";
 
 function App() {
-  // const [user, setUser] = useState(null);
-  // const [token, setToken] = useState(null);
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
 
-  // useEffect(() => {
-  //   Firebase.auth().onAuthStateChanged((user) => {
-  //     setUser(user);
-  //   });
-  // }, []);
+  useEffect(() => {
+    Firebase.auth().onAuthStateChanged((user) => {
+      setUser(user);
+    });
+  }, []);
 
-  // if (user) {
-  //   user.getIdToken(true).then(function (idToken) {
-  //     setToken(idToken);
-  //   });
-  // }
+  if (user) {
+    user.getIdToken(true).then(function (idToken) {
+      setToken(idToken);
+    });
+  }
 
   return (
     <div className="App">
-   {/*    {user ? <LayoutHeader user={user} /> : <LayoutHeader user={null} />} */}
-      {/*     {user ? <Verification token={token} /> : null} */}
-      {/*   <SpreadOnline  /> */}
+      {user ? <LayoutHeader user={user} /> : <LayoutHeader user={null} />} 
+    {user ? <Verification token={token} /> : null} 
+    { <SpreadOnline  />}
       
       {<SpreadSheets/>}
     </div>
