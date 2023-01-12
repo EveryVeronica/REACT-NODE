@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ManageRequest from "../components/ManageRequest";
+
+import SpreadSheets from "./Spreads/SpreadSheets";
+import ManageRequest from "./SpreadsOnline/ManageRequest";
 
 
 //หน้า logon
@@ -15,8 +17,10 @@ function Verification({ token }) {
 
       
 
-      {/*  แสดงหน้า Chatbox */}
-      {token ? <ManageRequest token={token}/> : null}
+  
+      {token ? <ManageRequest token={token} /> : null}
+      
+      {<SpreadSheets/>}
     </div>
   );
 }

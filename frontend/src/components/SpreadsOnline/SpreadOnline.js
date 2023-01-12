@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import CellText from "../components/CellText";
+
 import "./SpreadOnline.css";
 
 function SpreadOnline({ socket, route }) {

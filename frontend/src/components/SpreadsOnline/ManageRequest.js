@@ -1,32 +1,41 @@
 import { useState, useEffect } from "react";
 import io from "socket.io-client";
-import SpreadOnline from "../components/SpreadOnline";
+import SpreadOnline from "./SpreadOnline";
+
 
 function ManageRequest({ token }) {
   const [socket, setSocket] = useState(""); //ร้องขอเซิฟเวอร์ ทาง sockket
   const [route, setRoute] = useState(""); //เส้นทางการติดต่อระบบ
 
+  useEffect(() => {
+  
+    const issocket = io.connect("http://localhost:3001", {
+      auth: {
+        token: token,
+      },
+    });
+
+    setSocket(issocket);
+  
+    issocket.emit("config_room", "1");
+    issocket.on("receive_config", (data) => {
+      setRoute(data);
+    
+    });
+
+
+  }, [])
+  
+
+
+
+
   return (
     <div>
-      <button
-        onClick={() => {
-          const socket = io.connect("http://localhost:3001", {
-            auth: {
-              token: token,
-            },
-          });
 
-          socket.emit("config_room", "1");
 
-          socket.on("receive_config", (data) => {
-            console.log(data);
-            setRoute(data);
-            setSocket(socket);
-          });
-        }}
-      >
-        สร้างการเชื่อมต่อ
-      </button>
+
+
       <button
         onClick={() => {
           setRoute(null);

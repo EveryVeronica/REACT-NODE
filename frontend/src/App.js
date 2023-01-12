@@ -3,9 +3,9 @@ import "./App.css";
 import LayoutHeader from "./components/LayoutHeader";
 import Firebase from "./services/Firebase";
 import Verification from "./components/Verification";
-import SpreadOnline from "./components/SpreadOnline";
 
-import SpreadSheets from "./components/Spreads/SpreadSheets";
+
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -27,9 +27,9 @@ function App() {
     <div className="App">
       {user ? <LayoutHeader user={user} /> : <LayoutHeader user={null} />} 
     {user ? <Verification token={token} /> : null} 
-    { <SpreadOnline  />}
+
       
-      {<SpreadSheets/>}
+      
     </div>
   );
 }
