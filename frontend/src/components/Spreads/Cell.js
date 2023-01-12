@@ -1,16 +1,17 @@
 import React from 'react'
+import styles from './Cell.module.css'
 
 function Cell(props) {
   return (
  
     
     <li>
-         {props.fn ?  <button onClick={() => {
+         {/* {props.fn ?  <button className={styles.btn_remove} onClick={() => {
         props.fn(props.id,props.item.uid)
-      }}>-</button> : null}
+      }}></button> : null} */}
 
       
-      <input className="input-" type="text" value={props.item.str} />
+      <input className={styles.input} type="text" value={props.item.str} />
       
 
 

@@ -1,26 +1,28 @@
 import React from 'react'
+import styles from './InputStr.module.css'
+
 
 function InputStr(props) {
   return (
     <div className="container">
-    <div class="row-frame">
+    <div className={styles.row}>
  
 
       <input
         onChange={props.set}
         id="input"
-        className="input--"
+        className={styles.input}
         placeholder="numberRef"
         type="text"
       />
 
-      <input ref={props.Ref} id="input" className="input--" type="text" />
+      <input ref={props.Ref} id="input" className={styles.input} type="text" />
 
-      <button className="btn--a" onClick={props.fn}>
+      <button className={styles.btn_a} onClick={props.fn}>
         Insert!
       </button>
 
-      <button className="btn--b">Import.Csv!</button>
+      <button className={styles.btn_b}>Import.Csv!</button>
     </div>
   </div>
   )

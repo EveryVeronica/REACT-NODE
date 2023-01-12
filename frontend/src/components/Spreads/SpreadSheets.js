@@ -5,6 +5,9 @@ import Heading from "./Heading";
 import InputStr from "./InputStr";
 import List from "./List";
 
+import styles from './SpreadSheets.module.css'
+
+
 function SpreadSheets() {
   const [lists, setLists] = useState("");
   const [rows, setRows] = useState([]);
@@ -72,21 +75,21 @@ function SpreadSheets() {
   }, [quota]);
 
   return (
-    <div className="container-fluid">
+    <div className={styles.container_fluid}>
       {<InputStr Ref={inputRef} set={quotaInput} fn={inputText} />}
 
       <div
-        className="container"
+        className={styles.container}
         style={{ whiteSpace: "nowrap", overflowX: "scroll" }}
       >
 
 
         {<List arr={lists} />}
 
-        <div class="row--spread-b">
-    <div class="grid-container">
-      <div class="item1"></div>
-      <div class="item2" style={{ display: "flex" }}>
+        <div className={styles.spread_b}>
+
+      <div className={styles.item1}></div>
+      <div className={styles.item2} style={{ display: "flex" }}>
    
 
 
@@ -96,15 +99,15 @@ function SpreadSheets() {
 
 
       </div>
+
     </div>
-    </div>
 
 
 
-        <div class="row--spread-c">
-          <div class="grid-container">
-            <div class="item1">1</div>
-            <div class="item2">
+        <div className={styles.spread_c}>
+
+            <div className={styles.item1}>1</div>
+            <div className={styles.item2}>
               {rows.map((row, index) => {
                 let element = [];
 
@@ -115,8 +118,8 @@ function SpreadSheets() {
                 });
                 return (
                   <ul key={uuidv4()}>
-                    {" "}
-                    {element}{" "}
+          
+                    {element}
                     <button
                       onClick={() => {
                         let newR = rows.filter((r, k) => k !== index);
@@ -124,12 +127,12 @@ function SpreadSheets() {
                       }}
                     >
                       ลบ
-                    </button>{" "}
+                    </button>
                   </ul>
                 );
               })}
             </div>
-          </div>
+  
         </div>
       </div>
     </div>
