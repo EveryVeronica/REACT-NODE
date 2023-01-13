@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef } from "react";
+import GroupChat from "./GroupChat";
+import Manage from "./Manage";
+import Property from "./Property";
 
-import "./SpreadOnline.css";
 
+import styles from './SpreadOnline.module.css'
 function SpreadOnline({ socket, route }) {
   // //Room State
   const [room, setRoom] = useState("");
@@ -44,6 +47,35 @@ function SpreadOnline({ socket, route }) {
 
 
   return (
+
+    <div className={styles.container_fluid}>
+
+<div className={styles.spread_config}>
+ 
+{<Manage/>}
+
+        
+{<GroupChat/>}
+
+
+
+
+
+
+
+
+        <div className={styles.container}>
+ {<Property/>}
+    </div>
+
+
+
+
+    </div>
+
+
+
+
     <div>
 
       {room}
@@ -69,7 +101,9 @@ function SpreadOnline({ socket, route }) {
         <h1> Message:</h1>
         {messageReceived}
       </div>
-    </div>
+      </div>
+      
+      </div>
   );
 }
 
