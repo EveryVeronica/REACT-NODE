@@ -13,26 +13,35 @@ function SpreadOnline({ socket, route }) {
   const [message, setMessage] = useState("");
   const [messageReceived, setMessageReceived] = useState("");
 
-  const btnSetRoom = (
-    <button
-      onClick={() => {
-        if (route) {
-          socket.emit("join_room", route);
-          setRoom(route);
-        }
-      }}
-    >
-      สร้าง SpreadOnline
-    </button>
-  );
+  const btnSetRoom = () => {
+    if (route) {
+      socket.emit("join_room", route);
+      setRoom(route);
+    }
+  };
 
-  const joinRoom = () => {
-    socket.emit("join_room", room);
+
+
+
+  const inputJoin = (event) => {
+
+    setRoom(event.target.value);
+    joinRoom(event.target.value)
+
+  }
+
+  const joinRoom = (r) => {
+    socket.emit("join_room", r);
   };
   //ส่งข้อความ
   const sendMessage = () => {
     socket.emit("send_message", { message, room });
   };
+
+
+  const inputMessage = (event) => {
+    setMessage(event.target.value);
+  }
 
   useEffect(() => {
     if (socket) {
@@ -41,6 +50,9 @@ function SpreadOnline({ socket, route }) {
       });
     }
   }, [socket]);
+
+
+
 
   //////////////////////////////////////////////////////////////////
 
@@ -55,7 +67,7 @@ function SpreadOnline({ socket, route }) {
 {<Manage/>}
 
         
-{<GroupChat/>}
+        {<GroupChat inputJoin={inputJoin} inputMessage={inputMessage} sendMessage={sendMessage} messageReceived={messageReceived} />}
 
 
 
@@ -65,7 +77,7 @@ function SpreadOnline({ socket, route }) {
 
 
         <div className={styles.container}>
- {<Property/>}
+          {<Property setroom={btnSetRoom} room={room} />}
     </div>
 
 
@@ -78,29 +90,11 @@ function SpreadOnline({ socket, route }) {
 
     <div>
 
-      {room}
 
-      {btnSetRoom}
 
-      <div>
-        <input
-          placeholder="Room Number..."
-          onChange={(event) => {
-            setRoom(event.target.value);
-          }}
-        />
 
-        <button onClick={joinRoom}> Join Room</button>
-        <input
-          placeholder="Message..."
-          onChange={(event) => {
-            setMessage(event.target.value);
-          }}
-        />
-        <button onClick={sendMessage}> Send Message</button>
-        <h1> Message:</h1>
-        {messageReceived}
-      </div>
+
+
       </div>
       
       </div>
