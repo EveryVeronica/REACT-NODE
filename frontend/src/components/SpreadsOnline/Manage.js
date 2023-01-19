@@ -2,10 +2,13 @@ import React from 'react'
 import styles from './Manage.module.css'
 
 
-function Manage() {
+function Manage(props) {
   return (
     <div>
-      ddddddddddddddddddddd
+      <input type="text" onChange={props.inputQuota} placeholder='จำนวนฟิว' />
+    
+      
+     
     </div>
   )
 }

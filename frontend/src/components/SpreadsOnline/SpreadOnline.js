@@ -13,6 +13,11 @@ function SpreadOnline({ socket, route }) {
   const [message, setMessage] = useState("");
   const [messageReceived, setMessageReceived] = useState("");
 
+  const [quota, setQuota] = useState(5);
+
+
+
+
   const btnSetRoom = () => {
     if (route) {
       socket.emit("join_room", route);
@@ -21,7 +26,12 @@ function SpreadOnline({ socket, route }) {
   };
 
 
+  const inputQuota = (event) => {
 
+    setQuota(event.target.value);
+
+
+  }
 
   const inputJoin = (event) => {
 
@@ -54,20 +64,26 @@ function SpreadOnline({ socket, route }) {
 
 
 
+
+
+
+
   //////////////////////////////////////////////////////////////////
 
 
 
   return (
 
-    <div className={styles.container_fluid}>
+    
 
+    <div className={styles.container_fluid}>
+  
 <div className={styles.spread_config}>
  
-{<Manage/>}
+        {<Manage inputQuota={inputQuota} />}
 
         
-        {<GroupChat inputJoin={inputJoin} inputMessage={inputMessage} sendMessage={sendMessage} messageReceived={messageReceived} />}
+        {<GroupChat inputJoin={inputJoin} inputMessage={inputMessage} sendMessage={sendMessage} messageReceived={messageReceived} quota={quota} />}
 
 
 
@@ -96,7 +112,9 @@ function SpreadOnline({ socket, route }) {
 
 
       </div>
-      
+
+
+
       </div>
   );
 }
