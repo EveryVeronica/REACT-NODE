@@ -8,6 +8,7 @@ function ManageRequest({ token }) {
   const [route, setRoute] = useState(""); //เส้นทางการติดต่อระบบ
 
   useEffect(() => {
+    
   
     const issocket = io.connect("http://localhost:3001", {
       auth: {
@@ -21,10 +22,10 @@ function ManageRequest({ token }) {
     issocket.on("receive_config", (data) => {
       setRoute(data);
     
-    });
+    })
 
 
-  }, [])
+  }, [token])
   
 
 

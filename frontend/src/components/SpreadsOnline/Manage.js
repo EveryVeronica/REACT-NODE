@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Manage.module.css'
+
 
 
 function Manage(props) {

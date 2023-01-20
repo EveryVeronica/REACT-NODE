@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect} from "react";
 import GroupChat from "./GroupChat";
 import Manage from "./Manage";
 import Property from "./Property";
@@ -59,11 +59,10 @@ function SpreadOnline({ socket, route }) {
       list[index].value = ''
     }
     setMessage(array);
+ 
   }
 
-  useEffect(() => {
-    sendMessage()
-  }, [message]);
+
 
 
   useEffect(() => {
@@ -73,6 +72,8 @@ function SpreadOnline({ socket, route }) {
       });
     }
   }, [socket]);
+
+
 
 
 

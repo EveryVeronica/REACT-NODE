@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Cell from "./Cell";
 import Heading from "./Heading";
@@ -40,12 +40,15 @@ function SpreadSheets() {
 
   const remove = (i, e) => {
     let element = [];
+
     rows.map((row, index) => {
-      if (index == i) {
+      if (index === i) {
         element.push(row.filter((item) => item.uid !== e));
       } else {
         element.push(row);
       }
+
+      return true
     });
 
     setRows(element);

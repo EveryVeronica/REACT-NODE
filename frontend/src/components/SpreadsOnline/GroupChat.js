@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 
 import styles from './GroupChat.module.css'
 
@@ -57,7 +57,7 @@ function GroupChat(props) {
          </div>
        
           {
-            position.id == index ?  <input  id="handle" type="text" value={`X:${position.x.toFixed(0)}Y:${position.y.toFixed(0)}`} /> : <input id="handle" type="text" />
+            position.id === index ?  <input  id="handle" type="text" value={`X:${position.x.toFixed(0)}Y:${position.y.toFixed(0)}`} /> : <input id="handle" type="text" />
           }
         
           <input type="text" ref={el => (refs.current[index] = el)}  />
@@ -74,6 +74,8 @@ function GroupChat(props) {
   function btnSen() {
     let lists = refList(refs.current)
     props.inputMessage(lists)
+
+    props.sendMessage()
   
   }
 
