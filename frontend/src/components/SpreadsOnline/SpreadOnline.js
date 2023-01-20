@@ -45,13 +45,26 @@ function SpreadOnline({ socket, route }) {
   };
   //ส่งข้อความ
   const sendMessage = () => {
-    socket.emit("send_message", { message, room });
+  socket.emit("send_message", { message, room });
   };
 
 
-  const inputMessage = (event) => {
-    setMessage(event.target.value);
+  const inputMessage = (list) => {
+ let array = ''
+    for (let index = 0; index < list.length; index++) {
+
+
+
+      array +=list[index].value+",";
+      list[index].value = ''
+    }
+    setMessage(array);
   }
+
+  useEffect(() => {
+    sendMessage()
+  }, [message]);
+
 
   useEffect(() => {
     if (socket) {

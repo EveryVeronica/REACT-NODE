@@ -10,6 +10,7 @@ function GroupChat(props) {
 
 
   const HeaderInput = useRef(null)
+  const refs = useRef([])
 
   const [list, setList] = useState([]);
   const [position, setPosition] = useState({
@@ -49,15 +50,18 @@ function GroupChat(props) {
         x: data.x,
         y: data.y
       })}>
-        <li>
+        <li className={styles.li}>
         <div >
     
             {item}
          </div>
        
           {
-            position.id == index ?  <input id="handle" type="text" value={`X:${position.x.toFixed(0)}Y:${position.y.toFixed(0)}`} /> : <input id="handle" type="text" />
-          }</li>
+            position.id == index ?  <input  id="handle" type="text" value={`X:${position.x.toFixed(0)}Y:${position.y.toFixed(0)}`} /> : <input id="handle" type="text" />
+          }
+        
+          <input type="text" ref={el => (refs.current[index] = el)}  />
+        </li>
 
         
 
@@ -67,9 +71,20 @@ function GroupChat(props) {
 
     ));
   }
+  function btnSen() {
+    let lists = refList(refs.current)
+    props.inputMessage(lists)
   
+  }
 
-
+  function refList(refs) {
+    let list = [];
+    for(let i = 0; i < refs.length; i++){
+       list.push(refs[i]);
+    }
+    return list;
+  }
+  
 
 
 
@@ -102,10 +117,9 @@ function GroupChat(props) {
 
 { renderList(list)}
 
-<input  onChange={props.inputMessage}  type="text"/>
 
-
-<button type="text" onClick={props.sendMessage}>ส่ง</button>
+<button type="text" onClick={btnSen}>ส่ง</button>
+        
       
       </div>  
   
