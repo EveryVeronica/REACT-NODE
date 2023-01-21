@@ -1,7 +1,7 @@
 
 
-import SpreadSheets from "./Spreads/SpreadSheets";
-import ManageRequest from "./SpreadsOnline/ManageRequest";
+import SpreadSheets from "../components/Spreads/SpreadSheets";
+import ManageRequest from "./ManageRequest";
 
 
 //หน้า logon

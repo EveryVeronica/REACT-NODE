@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import LayoutHeader from "./components/LayoutHeader";
+import LayoutHeader from "./activities/LayoutHeader";
 import Firebase from "./services/Firebase";
-import Verification from "./components/Verification";
+import Verification from "./activities/Verification";
 
 
 
