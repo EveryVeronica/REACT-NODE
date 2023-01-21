@@ -20,6 +20,8 @@ function Verification(props) {
 
 
 
+
+
   useEffect(() => {
 
     props.user.getIdToken(true).then(function (idToken) {
@@ -48,6 +50,8 @@ function Verification(props) {
 
 
 
+
+
   return (
     <div>
 
@@ -55,18 +59,14 @@ function Verification(props) {
 <div>
 
 
+        {props.status === true ? 
+
+socket ? <SpreadOnline socket={socket} roomId={room} /> : null
+
+: null}
 
 
-{/* <button
-  onClick={() => {
-    setRoute(null);
-    setSocket(null);
-  }}
->
-  ตัดการเชื่อมต่อ
-</button> */}
 
-{socket ? <SpreadOnline socket={socket} roomId={room} /> : null}
 </div>
   
 
