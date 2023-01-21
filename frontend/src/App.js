@@ -40,9 +40,7 @@ function App() {
       {user ? <LayoutHeader user={user} handle={{
         disconnect: disconnect,
         connect:connect
-      }} signOut={() => { auth.signOut() }} /> : <LayoutHeader user={null} signIn={signInWithGoogle} handle={{
-        disconnect: disconnect,
-        connect:connect}} />} 
+      }} signOut={() => { auth.signOut() }} /> : <LayoutHeader user={null} signIn={signInWithGoogle}  />} 
       {user ? <Verification user={user} status={status} /> : null} 
 
       

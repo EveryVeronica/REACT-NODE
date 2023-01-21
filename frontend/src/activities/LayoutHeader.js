@@ -1,6 +1,5 @@
 import "./LayoutHeader.css";
-import { auth } from "../services/Firebase";
-import { signInWithGoogle } from "../services/Firebase";
+
 
 function LayoutHeader({ user,signIn,signOut,handle }) {
 
@@ -9,9 +8,10 @@ function LayoutHeader({ user,signIn,signOut,handle }) {
       <div className="left">
         {user ? <img src={user.photoURL} alt="a" /> : null}
         {user ? <button>{user.displayName}</button> : null}
-
-       <button onClick={handle.disconnect}>ตัดการเชื่อมต่อ</button>
-      <button   onClick={handle.connect}>SpreadOnline</button>
+        {handle ? <button onClick={handle.disconnect}>ตัดการเชื่อมต่อ</button> : null}
+        {handle ? <button onClick={handle.connect}>SpreadOnline</button> : null}
+       
+      
         
 
       </div>
