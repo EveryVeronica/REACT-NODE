@@ -24,7 +24,7 @@ function Verification(props) {
 
     props.user.getIdToken(true).then(function (idToken) {
 
-      alert('sssssssssssss' + idToken)
+
       
       const issocket = io.connect("http://localhost:3001", {
         auth: {

@@ -20,7 +20,7 @@ function SpreadOnline({ socket, roomId }) {
 
 
   const btnSetRoom = () => {
-    alert('ssssssssssssssssssss')
+    alert('สร้างการเชื่อมต่อ')
     if (roomId) {
       socket.emit("join_room", roomId);
       setRoom(roomId)
