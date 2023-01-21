@@ -75,7 +75,7 @@ function GroupChat(props) {
     let lists = refList(refs.current)
     props.inputMessage(lists)
 
-    props.sendMessage()
+   
   
   }
 

@@ -15,6 +15,7 @@ function SpreadOnline({ socket, route }) {
 
   const [quota, setQuota] = useState(5);
 
+  const [lists, setLists] = useState([]);
 
 
 
@@ -53,8 +54,6 @@ function SpreadOnline({ socket, route }) {
  let array = ''
     for (let index = 0; index < list.length; index++) {
 
-
-
       array +=list[index].value+",";
       list[index].value = ''
     }
@@ -62,12 +61,17 @@ function SpreadOnline({ socket, route }) {
  
   }
 
+  useEffect(() => {
+    sendMessage()
+  }, [message]);
+
 
 
 
   useEffect(() => {
     if (socket) {
       socket.on("receive_message", (data) => {
+    
         setMessageReceived(data);
       });
     }
@@ -77,7 +81,9 @@ function SpreadOnline({ socket, route }) {
 
 
 
-
+  useEffect(() => {
+    setLists([...lists, messageReceived])
+  }, [messageReceived]);
 
 
 
@@ -92,17 +98,13 @@ function SpreadOnline({ socket, route }) {
 
     <div className={styles.container_fluid}>
   
-<div className={styles.spread_config}>
+      <div className={styles.spread_config}>
+
  
         {<Manage inputQuota={inputQuota} />}
 
         
         {<GroupChat inputJoin={inputJoin} inputMessage={inputMessage} sendMessage={sendMessage} messageReceived={messageReceived} quota={quota} />}
-
-
-
-
-
 
 
 
@@ -122,7 +124,7 @@ function SpreadOnline({ socket, route }) {
 
 
 
-
+    {lists}
 
 
       </div>
