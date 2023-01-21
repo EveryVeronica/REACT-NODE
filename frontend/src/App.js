@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import LayoutHeader from "./activities/LayoutHeader";
-import Firebase from "./services/Firebase";
 import Verification from "./activities/Verification";
+import { auth,signInWithGoogle } from "./services/Firebase";
 
 
 
@@ -12,21 +12,23 @@ function App() {
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-    Firebase.auth().onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
+     
       setUser(user);
+
     });
   }, []);
 
-  if (user) {
-    user.getIdToken(true).then(function (idToken) {
-      setToken(idToken);
-    });
-  }
+
+
+
+
+
 
   return (
     <div className="App">
-      {user ? <LayoutHeader user={user} /> : <LayoutHeader user={null} />} 
-    {user ? <Verification token={token} /> : null} 
+      {user ? <LayoutHeader user={user} signOut={()=>{auth.signOut()}}/> : <LayoutHeader user={null} signIn={signInWithGoogle} />} 
+    {user ? <Verification user={user} /> : null} 
 
       
       

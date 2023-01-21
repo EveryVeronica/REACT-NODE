@@ -2,11 +2,7 @@ import "./LayoutHeader.css";
 import { auth } from "../services/Firebase";
 import { signInWithGoogle } from "../services/Firebase";
 
-function LayoutHeader({ user }) {
-  const btnSignIn = (
-    <button onClick={signInWithGoogle}>signInWithGoogle</button>
-  );
-  const btnSignOut = <button onClick={() => auth.signOut()}>Sign Out</button>;
+function LayoutHeader({ user,signIn,signOut }) {
 
   return (
     <div className="LayoutHeader-header">
@@ -15,7 +11,7 @@ function LayoutHeader({ user }) {
         {user ? <button>{user.displayName}</button> : null}
       </div>
 
-      <div className="right">{user ? btnSignOut : btnSignIn}</div>
+      <div className="right">{user ? <button onClick={signOut}>Sign Out</button> :  <button onClick={signIn}>signInWithGoogle</button>}</div>
     </div>
   );
 }

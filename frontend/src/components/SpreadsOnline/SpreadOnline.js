@@ -5,7 +5,7 @@ import Property from "./Property";
 
 
 import styles from './SpreadOnline.module.css'
-function SpreadOnline({ socket, route }) {
+function SpreadOnline({ socket, roomId }) {
   // //Room State
   const [room, setRoom] = useState("");
 
@@ -20,10 +20,13 @@ function SpreadOnline({ socket, route }) {
 
 
   const btnSetRoom = () => {
-    if (route) {
-      socket.emit("join_room", route);
-      setRoom(route);
+    alert('ssssssssssssssssssss')
+    if (roomId) {
+      socket.emit("join_room", roomId);
+      setRoom(roomId)
     }
+
+   
   };
 
 
@@ -36,8 +39,9 @@ function SpreadOnline({ socket, route }) {
 
   const inputJoin = (event) => {
 
-    setRoom(event.target.value);
+
     joinRoom(event.target.value)
+    setRoom(event.target.value);
 
   }
 
