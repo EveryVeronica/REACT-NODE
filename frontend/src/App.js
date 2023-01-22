@@ -1,50 +1,26 @@
-import { useState, useEffect } from "react";
-import "./App.css";
-import LayoutHeader from "./activities/LayoutHeader";
-import Verification from "./activities/Verification";
-import { auth, signInWithGoogle } from "./services/Firebase";
+import React from 'react'
+import LayoutHeader from './activities/LayoutHeader';
+import {auth} from "./services/Firebase"
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
-  const [status, setStatus] = useState(false);
+    const [user, setUser] = React.useState(null); //เก็บ user login WithGoogle
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      setUser(user);
-    });
-  }, []);
 
-  const disconnect = () => {
-    alert("false");
-    setStatus(false);
-  };
+    // auth user staus
+    React.useEffect(() => {
+        auth.onAuthStateChanged((r) => {
+            setUser(r)
+        });
+    }, []);
 
-  const connect = () => {
-    alert("true");
-    setStatus(true);
-  };
 
   return (
-    <div className="App">
-      {user ? (
-        <LayoutHeader
-          user={user}
-          handle={{
-            disconnect: disconnect,
-            connect: connect,
-          }}
-          signOut={() => {
-            auth.signOut();
-          }}
-        />
-      ) : (
-        <LayoutHeader user={null} signIn={signInWithGoogle} />
-      )}
-
-      {user ? <Verification user={user} status={status} /> : null}
+    <div>
+        
+          <LayoutHeader isLogon={user} />
+          
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
