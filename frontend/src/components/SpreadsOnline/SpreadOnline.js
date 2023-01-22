@@ -63,7 +63,7 @@ function SpreadOnline({ socket, roomId,ListsText }) {
       for(let i = 0; i < refs.length; i++){
         list.push(refs[i].value);
         
-       // refs[i].value = ''
+      refs[i].value = ''
       }
 // alert(list)
 
