@@ -63,21 +63,25 @@ function SpreadSheets({text}) {
 
   useEffect(() => {
 
-    let str = []
-for (let index = 0; index < text.length; index++) {
-  str.push({
-    //เก็บ ค่า input
-    uid: uuidv4(),
-    str: text[index],
-  })
 
 
-  
-}
 
-   setRows([...rows,str])
+    if (!text == "") {
+      let str = []
+    for (let index = 0; index < text.length; index++) {
+      str.push({
+        //เก็บ ค่า input
+        uid: uuidv4(),
+        str: text[index],
+      })
+    
+    
+      
+    }
 
+    setRows([...rows,str])
 
+    }
 
 
   }, [text]);
