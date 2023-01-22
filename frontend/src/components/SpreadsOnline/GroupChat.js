@@ -72,20 +72,14 @@ function GroupChat(props) {
     ));
   }
   function btnSen() {
-    let lists = refList(refs.current)
-    props.inputMessage(lists)
+
+    props.inputMessage(refs.current)
 
    
   
   }
 
-  function refList(refs) {
-    let list = [];
-    for(let i = 0; i < refs.length; i++){
-       list.push(refs[i]);
-    }
-    return list;
-  }
+
   
 
 
@@ -117,7 +111,7 @@ function GroupChat(props) {
 
 
 
-{ renderList(list)}
+{renderList(list)}
 
 
 <button type="text" onClick={btnSen}>ส่ง</button>

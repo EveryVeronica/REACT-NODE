@@ -14,6 +14,9 @@ function Verification(props) {
   const [socket, setSocket] = useState(""); //ร้องขอเซิฟเวอร์ ทาง sockket
   const [room, setRoom] = useState(""); //เส้นทางการติดต่อระบบ
 
+  const [text, setText] = useState(""); //เส้นทางการติดต่อระบบ
+
+
 
 
 
@@ -49,7 +52,10 @@ function Verification(props) {
 
 
 
+  const ListsText = (str) => {
 
+    setText(str)
+  }
 
 
   return (
@@ -61,7 +67,7 @@ function Verification(props) {
 
         {props.status === true ? 
 
-socket ? <SpreadOnline socket={socket} roomId={room} /> : null
+socket ? <SpreadOnline socket={socket} roomId={room} ListsText={ListsText}  /> : null
 
 : null}
 
@@ -71,7 +77,7 @@ socket ? <SpreadOnline socket={socket} roomId={room} /> : null
   
 
       
-      {<SpreadSheets/>}
+      {<SpreadSheets text={text} />}
     </div>
   );
 }

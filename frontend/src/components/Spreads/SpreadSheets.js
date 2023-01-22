@@ -8,7 +8,7 @@ import List from "./List";
 import styles from './SpreadSheets.module.css'
 
 
-function SpreadSheets() {
+function SpreadSheets({text}) {
   const [lists, setLists] = useState("");
   const [rows, setRows] = useState([]);
   const [quota, setQuota] = useState(5);
@@ -61,7 +61,26 @@ function SpreadSheets() {
     }
   }, [lists]);
 
+  useEffect(() => {
 
+    let str = []
+for (let index = 0; index < text.length; index++) {
+  str.push({
+    //เก็บ ค่า input
+    uid: uuidv4(),
+    str: text[index],
+  })
+
+
+  
+}
+
+   setRows([...rows,str])
+
+
+
+
+  }, [text]);
 
   useEffect(() => {
 

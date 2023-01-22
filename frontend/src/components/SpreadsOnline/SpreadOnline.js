@@ -5,7 +5,7 @@ import Property from "./Property";
 
 
 import styles from './SpreadOnline.module.css'
-function SpreadOnline({ socket, roomId }) {
+function SpreadOnline({ socket, roomId,ListsText }) {
   // //Room State
   const [room, setRoom] = useState("");
 
@@ -54,14 +54,23 @@ function SpreadOnline({ socket, roomId }) {
   };
 
 
-  const inputMessage = (list) => {
- let array = ''
-    for (let index = 0; index < list.length; index++) {
+  const inputMessage = (refs) => {
 
-      array +=list[index].value+",";
-      list[index].value = ''
-    }
-    setMessage(array);
+
+
+
+      let list = [];
+      for(let i = 0; i < refs.length; i++){
+        list.push(refs[i].value);
+        
+       // refs[i].value = ''
+      }
+// alert(list)
+
+// console.log(list);
+ setMessage(list);
+
+   
  
   }
 
@@ -77,6 +86,8 @@ function SpreadOnline({ socket, roomId }) {
       socket.on("receive_message", (data) => {
     
         setMessageReceived(data);
+
+    ListsText(data)
       });
     }
   }, [socket]);
@@ -87,6 +98,8 @@ function SpreadOnline({ socket, roomId }) {
 
   useEffect(() => {
     setLists([...lists, messageReceived])
+
+
   }, [messageReceived]);
 
 
