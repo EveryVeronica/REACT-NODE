@@ -1,16 +1,11 @@
-import React from 'react'
-
-
+import React from "react";
 
 function Manage(props) {
   return (
     <div>
-      <input type="text" onChange={props.inputQuota} placeholder='จำนวนฟิว' />
-    
-      
-     
+      <input type="text" onChange={props.inputQuota} placeholder="จำนวนฟิว" />
     </div>
-  )
+  );
 }
 
-export default Manage
+export default Manage;
