@@ -1,26 +1,32 @@
-import React from 'react'
-import LayoutHeader from './activities/LayoutHeader';
-import {auth} from "./services/Firebase"
+import React, { useEffect,useState } from 'react'
+import LayoutHeader from "./activities/LayoutHeader";
+import Spreadsheets from "./components/Entry/Spreadsheets";
+
+import { auth } from "./services/Firebase";
 
 function App() {
-    const [user, setUser] = React.useState(null); //เก็บ user login WithGoogle
+  const [user, setUser] = useState(null); //เก็บ user login WithGoogle
+
+  // auth user staus
+  useEffect(() => {
+    auth.onAuthStateChanged((r) => {
+      setUser(r);
+    });
+  }, []);
 
 
-    // auth user staus
-    React.useEffect(() => {
-        auth.onAuthStateChanged((r) => {
-            setUser(r)
-        });
-    }, []);
 
 
   return (
     <div>
-        
-          <LayoutHeader isLogon={user} />
-          
+   
+      {/* <LayoutHeader user={user} /> */}
+
+     
+      <Spreadsheets/>
+
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -4,17 +4,17 @@ import "./LayoutHeader.css";
 import { auth, signInWithGoogle } from "../services/Firebase"
 
 
-function LayoutHeader({isLogon}) {
+function LayoutHeader({user}) {
   return (
     <div className="LayoutHeader-header">
       <div className="left">
-        {isLogon ? <img src={isLogon.photoURL} alt="a" /> : null}
-        {isLogon ? <button>{isLogon.displayName}</button> : null}
+        {user ? <img src={user.photoURL} alt="a" /> : null}
+        {user ? <button>{user.displayName}</button> : null}
         
       </div>
 
       <div className="right">
-        {isLogon ? (
+        {user ? (
           <button onClick={()=>{auth.signOut()}}>Sign Out</button>
         ) : (
           <button onClick={signInWithGoogle}>signInWithGoogle</button>
