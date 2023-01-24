@@ -3,11 +3,13 @@ import React from 'react'
 function ListText({Lists}) {
   return (
     <ul>
-          {Lists.map((item) => <li key={item.id}>
+          {Lists.map((item) => <li key={item.ListText.id}>
           <input 
          type="text" 
          placeholder="text..."
-         defaultValue={item.text}
+              defaultValue={item.ListText.text}
+              
+          
                />
           </li>)}
 

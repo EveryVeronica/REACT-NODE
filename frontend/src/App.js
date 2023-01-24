@@ -9,6 +9,7 @@ function App() {
 
   // auth user staus
   useEffect(() => {
+
     auth.onAuthStateChanged((r) => {
       setUser(r);
     });
@@ -20,10 +21,10 @@ function App() {
   return (
     <div>
    
-      {/* <LayoutHeader user={user} /> */}
+      <LayoutHeader user={user} />
 
      
-      <Spreadsheets/>
+      <Spreadsheets user={user}/>
 
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import InsertsText from "../Insert/InsertsText";
 import ListText from "../List/ListText";
 
-function Spreadsheets() {
+function Spreadsheets({user}) {
   const [Lists, setLists] = useState([]); // lists text
   const [ListsRow, setListsRow] = useState([]); // ListsRow
 
@@ -18,8 +18,9 @@ function Spreadsheets() {
     for (let index = 0; index < ListsRow.length; index++) {
       let row = ListsRow[index];
       let element = row.map((item) => (
-        <li key={item.id}>
-          <input type="text" value={item.text} onChange={() => {}} />
+        <li key={item.ListText.id}>
+          <button >{item.user.displayName}</button>
+          <input type="text" value={item.ListText.text} onChange={() => {}} />
         </li>
       ));
 
@@ -48,10 +49,26 @@ function Spreadsheets() {
 
   return (
     <div>
-      <p>debug:{Lists.map((item) => item.text)}</p>
+      {user ? <button>{user.displayName}</button> : null}
+      <p>debug:{Lists.map((item) => item.ListText.text)}</p>
       <InsertsText
         ReceiveInput={(r) => {
-          setLists([...Lists, r]);
+          let obj = ""
+          if (user) {
+            obj = {
+              ListText: r,
+              user:user
+            }
+          } else {
+            obj = {
+              ListText: r,
+              user:"anonymous"
+            }
+
+          }
+
+         
+          setLists([...Lists, obj]);
         }}
       />
       <ListText Lists={Lists} />
