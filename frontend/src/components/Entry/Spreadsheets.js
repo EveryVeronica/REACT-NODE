@@ -19,7 +19,7 @@ function Spreadsheets({user}) {
       let row = ListsRow[index];
       let element = row.map((item) => (
         <li key={item.ListText.id}>
-          <button >{item.user.displayName}</button>
+          <button >{item.user}</button>
           <input type="text" value={item.ListText.text} onChange={() => {}} />
         </li>
       ));
@@ -49,7 +49,7 @@ function Spreadsheets({user}) {
 
   return (
     <div>
-      {user ? <button>{user.displayName}</button> : null}
+    
       <p>debug:{Lists.map((item) => item.ListText.text)}</p>
       <InsertsText
         ReceiveInput={(r) => {
@@ -57,7 +57,7 @@ function Spreadsheets({user}) {
           if (user) {
             obj = {
               ListText: r,
-              user:user
+              user:user.displayName
             }
           } else {
             obj = {
