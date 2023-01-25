@@ -31,6 +31,11 @@ function App() {
   }, [user])
 
 
+  const handelRemoveContact =() => {
+    setToken("")
+}
+
+
 
 
 
@@ -38,7 +43,10 @@ function App() {
     <div>
 
   
-      <LayoutHeader user={user} handel={handelCreateContact} />
+      <LayoutHeader user={user} handel={{
+        handelCreateContact: handelCreateContact,
+        handelRemoveContact:handelRemoveContact
+      }} />
       {Token ? <ContactSocket token={Token} />: null}
       <Spreadsheets user={user} />
       

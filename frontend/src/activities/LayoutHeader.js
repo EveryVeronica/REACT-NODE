@@ -11,7 +11,9 @@ function LayoutHeader({user,handel}) {
         {user ? <img src={user.photoURL} alt="a" /> : null}
         {user ? <button>{user.displayName}</button> : null}
 
-        {user ? <button onClick={handel}>สร้างการเชื่อมต่อ</button> : null}
+        {user ? <button onClick={handel.handelCreateContact}>สร้างการเชื่อมต่อ</button> : null}
+        
+        {user ? <button onClick={handel.handelRemoveContact}>ตัดการเชื่อมต่อ</button> : null}
         
       </div>
 

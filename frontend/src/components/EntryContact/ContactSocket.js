@@ -1,14 +1,38 @@
-import React, { useMemo } from 'react'
-
+import React, { useMemo, useState } from 'react'
+import io from "socket.io-client";
 function ContactSocket({token}) {
 
+    const [ContactID, setContactID] = useState(""); //เก็บ user login WithGoogle
+  //  const [message, setMessage] = useState(""); //เก็บ user login WithGoogle
 
-  const Renders = useMemo(() => {
-return "dddddddddddd"+token
-  }, [token]);
+
+    const socket = useMemo(() => {
+        const setSocket = io.connect("http://localhost:3001", {
+            auth: {
+              token: token,
+            },
+          });
+      return setSocket
+    }, [token]);
+
+
+
+
+   useMemo(() => {
+        socket.emit("config_room", "1");
+        socket.on("receive_config", (data) => {
+            setContactID(data)
+        });
+    }, [socket]);
+    
+
+
   return (
-    <div>
-     { Renders}
+      <div>
+         
+
+          <p>Debug: {token}</p>
+  {ContactID}
     </div>
   )
 }
