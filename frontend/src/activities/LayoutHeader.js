@@ -4,12 +4,14 @@ import "./LayoutHeader.css";
 import { auth, signInWithGoogle } from "../services/Firebase"
 
 
-function LayoutHeader({user}) {
+function LayoutHeader({user,handel}) {
   return (
     <div className="LayoutHeader-header">
       <div className="left">
         {user ? <img src={user.photoURL} alt="a" /> : null}
         {user ? <button>{user.displayName}</button> : null}
+
+        {user ? <button onClick={handel}>สร้างการเชื่อมต่อ</button> : null}
         
       </div>
 
