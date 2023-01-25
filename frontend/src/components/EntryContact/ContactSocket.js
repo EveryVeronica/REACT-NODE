@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 function ContactSocket({token}) {
 
 
-
+  const Renders = useMemo(() => {
+return "dddddddddddd"+token
+  }, [token]);
   return (
     <div>
-      sssssssssssssssssssss
+     { Renders}
     </div>
   )
 }

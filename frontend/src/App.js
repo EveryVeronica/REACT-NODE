@@ -32,9 +32,7 @@ function App() {
 
 
 
-  // const Renders = useMemo(() => {
 
-  // }, [user]);
 
   return (
     <div>
