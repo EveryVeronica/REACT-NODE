@@ -53,10 +53,16 @@ io.on("connection", (socket) => {
   socket.on("send_message", ({displayName, message, room }) => {
     
     console.log(`displayName:[${displayName}]- ข้อความ:[${message}]- ห้อง:[${room}]`);
-
+  
+    const myJSON = JSON.stringify(message);
+   
+    
+   // const myArray = myJSON.split(",");
+    
+   // console.log('aaaaaaaaaaaaaaaaaaaaaaaa' + myArray); 
 let obj = {
   Name: displayName,
-  message: message
+  message: myJSON
 }
     socket.to(room).emit("receive_message", obj);
     socket.emit("receive_message", obj);
