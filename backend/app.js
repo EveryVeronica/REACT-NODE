@@ -23,28 +23,43 @@ io.on("connection", (socket) => {
   const count = io.engine.clientsCount;
   const {token} = socket.handshake.auth; // receive the token from client
 
-  console.log(`User Connected: ${socket.id}`);
+  console.log(`socketID: [${socket.id}]`);
+
+
+
 
   socket.on("config_room", async (data) => {
 
     let { email, uid } = await verifyIdToken(token);
-    console.log(`ISemail:${email}ISuid:${uid}`);
-    console.log('จำนวนการเชื่อมต่อ'+count);
-
+    console.log(`clientsCount:[${count}]- uid:[${uid}]- email:[${email}]`)
     // Encrypts output
-    let {iv,encryptedData} = encrypt(uid);
-    socket.emit("receive_config", encryptedData);
+
+    if (email) {
+      let {iv,encryptedData} = encrypt(uid);
+      socket.emit("receive_config", encryptedData);
+    }
+
 
   });
 
-  socket.on("join_room", async (data) => { 
-    console.log('เชื่อมต่อ room'+data);
+  socket.on("join_room", (data) => { 
+
+    console.log(`สร้างห้อง:[${data}]`);
     socket.join(data);
   })
 
-  socket.on("send_message", ({message, room }) => {
-    socket.to(room).emit("receive_message", message);
-   socket.emit("receive_message", message);
+
+
+  socket.on("send_message", ({displayName, message, room }) => {
+    
+    console.log(`displayName:[${displayName}]- ข้อความ:[${message}]- ห้อง:[${room}]`);
+
+let obj = {
+  Name: displayName,
+  message: message
+}
+    socket.to(room).emit("receive_message", obj);
+    socket.emit("receive_message", obj);
     
   });
 });
@@ -85,7 +100,7 @@ const iv = crypto.randomBytes(16);
 
 // An encrypt function
 function encrypt(text) {
-console.log(Buffer.from(key));
+
 // Creating Cipheriv with its parameter
 let cipher =
 	crypto.createCipheriv(algorithm, key, iv);
