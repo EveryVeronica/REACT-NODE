@@ -83,7 +83,7 @@ function ContactSocket({ user, token, sendValue }) {
   }, [list]);
 
   return (
-    <div>
+ 
       <div className={styles.container_fluid}>
         <div className={styles.spread_grid}>
           <div className={styles.room_id}>1</div>
@@ -95,7 +95,7 @@ function ContactSocket({ user, token, sendValue }) {
             />{" "}
             <button type="text" onClick={addToList}>
               สร้าง
-            </button>{" "}
+            </button>
           </div>
           <div className={styles.status}>3</div>
           <div className={styles.control}>
@@ -133,17 +133,23 @@ function ContactSocket({ user, token, sendValue }) {
             </button>
           </div>
           <div className={styles.user_online}>7</div>
-        </div>
       </div>
+      
 
-      {/* <p>token: {token}</p>
+
+
+
+            {/* <p>token: {token}</p>
      <p>ContactID: {ContactID}</p>
       
 
 
       <p>Message: {message}</p>
       <p>ReceiveName: {receive.Name} - ReceiveMessage: {receive.message}</p> */}
-    </div>
+      </div>
+
+
+
   );
 }
 

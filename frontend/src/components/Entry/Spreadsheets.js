@@ -68,9 +68,25 @@ function Spreadsheets({ user, Input }) {
       setListsRow([...ListsRow, arr]);
     }
   }, [Input]);
+
+
+
+
+
+
   return (
-    <div>
-      <div className={styles.container_fluid}></div>
+    <div className={styles.container_fluid}>
+      <div className={styles.spread_grid}>
+        <div className={styles.setting}>1</div>  
+        <div className={styles.insert}>2</div>  
+        <div className={styles.control}>3</div>  
+        <div className={styles.lists}>4</div>  
+        <div className={styles.heading}>5</div>  
+        <div className={styles.listsRow}>6</div>  
+        <div className={styles.details}>7</div>  
+
+        
+      </div>
 
       <p>debug:{Lists.map((item) => item.ListText.text)}</p>
       <InsertsText
