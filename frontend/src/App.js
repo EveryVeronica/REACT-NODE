@@ -8,6 +8,8 @@ import { auth } from "./services/Firebase";
 function App() {
   const [user, setUser] = useState(null); //เก็บ user login WithGoogle
   const [Token, setToken] = useState(""); //เก็บ user login WithGoogle
+  const [Input, setInput] = useState(""); //เก็บ user login WithGoogle
+
   // auth user staus
   useEffect(() => {
     auth.onAuthStateChanged((r) => {
@@ -27,6 +29,13 @@ function App() {
     setToken("");
   };
 
+
+  const sendValue = useCallback((input) => {
+
+    //alert("sendValue" + input.message)
+    setInput(input)
+  }, [user]);
+
   return (
     <div>
       <LayoutHeader
@@ -36,9 +45,9 @@ function App() {
           handelRemoveContact: handelRemoveContact,
         }}
       />
-      {Token ? <ContactSocket user={user} token={Token} /> : null}
+      {Token ? <ContactSocket user={user} token={Token} sendValue={sendValue} /> : null}
 
-      <Spreadsheets user={user} />
+      <Spreadsheets user={user} Input={Input} />
     </div>
   );
 }

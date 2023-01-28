@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from "react";
 import InsertsText from "../Insert/InsertsText";
 import ListText from "../List/ListText";
-
-function Spreadsheets({user}) {
+import { v4 as uuidv4 } from "uuid";
+function Spreadsheets({user,Input}) {
   const [Lists, setLists] = useState([]); // lists text
   const [ListsRow, setListsRow] = useState([]); // ListsRow
 
@@ -47,6 +47,39 @@ function Spreadsheets({user}) {
     return arr;
   }, [ListsRow]);
 
+
+useMemo(() => {
+
+
+
+  if (Input != "") {
+
+
+    const myArray = JSON.parse(Input.message);
+
+    let arr = myArray.map(message => {
+
+
+
+     return {
+        ListText: {
+          id: uuidv4(),
+          text:message
+        },
+        user:Input.Name
+      }
+      
+    });
+    
+    setListsRow([...ListsRow, arr ]);
+    
+  }
+
+
+
+
+
+  }, [Input]);
   return (
     <div>
     

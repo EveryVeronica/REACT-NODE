@@ -4,7 +4,7 @@ import Draggable from 'react-draggable';
 
 let count = 0;
 
-function ContactSocket({ user, token }) {
+function ContactSocket({ user, token,sendValue }) {
   const [ContactID, setContactID] = useState(""); //เก็บ user login WithGoogle
   const [message, setMessage] = useState(""); //เก็บ user login WithGoogle
   const [receive, setReceive] = useState(""); //เก็บ user login WithGoogle
@@ -45,6 +45,7 @@ function ContactSocket({ user, token }) {
     });
 
     socket.on("receive_message", (data) => {
+      sendValue(data)
       setReceive(data);
       
       console.log("displayName:"+data.Name +"ข้อความ"+data.message);
@@ -54,6 +55,14 @@ function ContactSocket({ user, token }) {
   useEffect(() => {
     sendMessage();
   }, [message]);
+
+
+
+
+
+   
+
+
 
   //ส่งข้อความ
   const sendMessage = () => {
@@ -116,11 +125,6 @@ function ContactSocket({ user, token }) {
         onClick={() => {
 
           let arr = refs.current.map((item) => item.value)
-         // setMessage(inputTextRef.current.value);
-       //  const myArray = arr.split(",");
-          
-          
-          
          setMessage(arr)
         }}
       >
