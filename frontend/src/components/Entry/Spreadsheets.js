@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react";
-import InsertsText from "../Insert/InsertsText";
+import React, { useMemo, useRef, useState } from "react";
+
 import ListText from "../List/ListText";
 
 import styles from "./Spreadsheets.module.css";
@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 function Spreadsheets({ user, Input }) {
   const [Lists, setLists] = useState([]); // lists text
   const [ListsRow, setListsRow] = useState([]); // ListsRow
-
+  const ref = useRef();
   if (Lists.length >= 5) {
     setListsRow([...ListsRow, Lists]);
     setLists([]);
@@ -48,9 +48,6 @@ function Spreadsheets({ user, Input }) {
     return arr;
   }, [ListsRow]);
 
-
-
-
   useMemo(() => {
     if (Input != "") {
       const myArray = JSON.parse(Input.message);
@@ -69,47 +66,54 @@ function Spreadsheets({ user, Input }) {
     }
   }, [Input]);
 
-
-
-
-
-
   return (
     <div className={styles.container_fluid}>
       <div className={styles.spread_grid}>
-        <div className={styles.setting}>1</div>  
-        <div className={styles.insert}>2</div>  
-        <div className={styles.control}>3</div>  
-        <div className={styles.lists}>4</div>  
-        <div className={styles.heading}>5</div>  
-        <div className={styles.listsRow}>6</div>  
-        <div className={styles.details}>7</div>  
+        <div className={styles.setting}>1</div>
+        <div className={styles.insert}>
+          <input type="text" ref={ref} />
+        </div>
+        <div className={styles.control}>
+          <button
+            type="text"
+            onClick={() => {
+              let obj = "";
+              if (user) {
+                obj = {
+                  ListText: {
+                    id: uuidv4(),
+                    text: ref.current.value,
+                  },
+                  user: user.displayName,
+                };
+              } else {
+                obj = {
+                  ListText: {
+                    id: uuidv4(),
+                    text: ref.current.value,
+                  },
+                  user: "anonymous",
+                };
+              }
 
-        
+              setLists([...Lists, obj]);
+
+              ref.current.value = "";
+            }}
+          >
+            insert
+          </button>
+        </div>
+        <div className={styles.lists}>
+          {" "}
+          <ListText Lists={Lists} />
+        </div>
+        <div className={styles.heading}>5</div>
+        <div className={styles.listsRow}>{Renders}</div>
+        <div className={styles.details}>7</div>
       </div>
 
       <p>debug:{Lists.map((item) => item.ListText.text)}</p>
-      <InsertsText
-        ReceiveInput={(r) => {
-          let obj = "";
-          if (user) {
-            obj = {
-              ListText: r,
-              user: user.displayName,
-            };
-          } else {
-            obj = {
-              ListText: r,
-              user: "anonymous",
-            };
-          }
-
-          setLists([...Lists, obj]);
-        }}
-      />
-      <ListText Lists={Lists} />
-
-      {Renders}
     </div>
   );
 }
